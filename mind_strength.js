@@ -84,7 +84,7 @@ function draw(){
     function advacend(){
 
         let advacend = document.querySelector("input[name=advacend]");
-        let adw = getadvacend();
+        let adw = getAdvacend();
         if (adw === 'on'){
             advacend.checked = true;
         }else{
@@ -93,10 +93,10 @@ function draw(){
 
         advacend.addEventListener('change', function() {
             if (this.checked) {
-                setadvacend('on');
+                setAdvacend('on');
                 console.log("Advacend is checked..");
             } else {
-                setadvacend("off");
+                setAdvacend("off");
                 console.log("Advacend is not checked..");
             }
         });
@@ -289,17 +289,37 @@ function draw(){
      */
     function runRadnom(){
 
-        if(getRandomMonet2()){
-            valueX++;
-            let x = getRandomX();
-            let y = getRandomY();
-            left(x, y, radius);
+        let ga = getAdvacend();
+
+
+        if (ga === 'on'){
+            if(getRandomMonet()){
+                valueX++;
+                let x = getRandomX();
+                let y = getRandomY();
+                left(x, y, radius);
+            }else{
+                valueY++;
+                let x = getRandomX();
+                let y = getRandomY();
+                right(x, y, radius);
+            }
+
         }else{
-            valueY++;
-            let x = getRandomX();
-            let y = getRandomY();
-            right(x, y, radius);
+            if(getRandomMonet2()){
+                valueX++;
+                let x = getRandomX();
+                let y = getRandomY();
+                left(x, y, radius);
+            }else{
+                valueY++;
+                let x = getRandomX();
+                let y = getRandomY();
+                right(x, y, radius);
+            }
         }
+
+
 
         licznikLeftVal.innerHTML = `${valueX}`;
         licznikRightVal.innerHTML = `${valueY}`;
@@ -394,11 +414,11 @@ function draw(){
 
 
 
-    function setadvacend(revert){
+    function setAdvacend(revert){
         localStorage["advacend"] = revert;
     }
 
-    function getadvacend(){
+    function getAdvacend(){
         return localStorage.getItem("advacend") ;
     }
 
